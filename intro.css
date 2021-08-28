@@ -1,0 +1,331 @@
+
+    /* set the web page to full size */
+    html, body {
+        height:100%;
+        width:100%;
+        background-size: cover;
+        background-color:white;
+        background-position: center;
+        font-family: 'Courier New', monospace;
+        color: black;
+        touch-action: manipulation;
+        
+        
+    }
+    /*Set a container for everything in the page */ 
+    .login-page {
+        width:100%;
+        height:100%;
+        padding:10% 0 0;
+        margin: auto;
+        position: relative;
+    }
+    #map_container{
+        width:100%;
+        height:100%;
+        margin:auto;
+      }
+
+    .carousel-inner{
+        width:100%;
+        height:100%;
+        padding:40px;
+        text-align:center;
+        outline: 1;
+        background: rgba(255,255,255,0.8);
+        border-radius: 25px;
+        padding: 20px;
+        box-sizing: border-box;
+        font-size:14px;
+    }
+    #carouselExampleIndicators img {
+        width: 100%;  /* fit the image within the div */
+        object-fit: cover;  /* "object-fit" property has various options for fitting an image within a specified space (works because both the img width and height are specified) */
+        background:rgba(255,255,255);
+        position: absolute;
+        bottom: 10px;
+        height:100%;
+    }
+     
+
+    .responsive{
+        padding: 0 6px;
+        width: 25%;
+    }
+    @media only screen and (max-width: 700px){
+        .responsive{
+            width: 50%;
+            margin: 6px 0;
+        }
+    }
+    @media only screen and (max-width:500px){
+        .responsive{
+            width:100%;
+        }
+    }
+
+    /* Set a container for the login/registration form */
+    #form{
+        position:relative;
+        float: right;
+        width:100%;
+        padding:40px;
+        text-align:center;
+        margin:auto;
+        
+    }
+
+    /*Set a the style of the input boxes (email/password etc).*/
+    #form input{
+        outline: 1;
+        background: #f2f2f2;
+        width: 100%;
+        border: 0;
+        margin: 0 0 15px;
+        padding: 20px;
+        box-sizing: border-box;
+        font-size:14px;
+        border-radius:10px;
+    } 
+    
+    /*Set the style of the buttons for login and regiser*/
+    #form button{
+        text-transform: uppercase;
+        outline: 0;
+        background: #b9daa5;
+        width: 100%;
+        border: 0;
+        margin: 0 0 15px;
+        padding: 15px;
+        color: white;
+        font-size: 14px;
+        cursor: pointer;
+        border-radius:10px;
+    }
+
+    /* Set the button to change colour when hovered over*/
+    #form button:hover,#form button:active{
+        background: #D1E5BE;
+    }
+
+    /* Set the style of the message */
+    #form .message{
+        margin: 15px;
+        color: #9cc07b;
+        font-size:12px
+        ;
+    }
+
+    /* Set the style of the hyperlink */
+    #form .message a{
+        color: #9cc07b;
+        text-decoration:none;
+    }
+
+    /* Hide the register form to only show the login */
+    #form .registerform{
+        display: none;
+    }
+        /* Hide the register form to only show the login */
+        #form .loginform{
+            display: block;
+        }
+    /* Set the map to the right of the page */
+    #map{
+        position:relative;
+        width:1000%;
+        height:100%;
+    }
+
+    #vertical-menu {
+        /* width: 50px; */
+        height:100%;
+        position: absolute;
+        padding: 10px;
+        z-index: 500;
+        border-radius: 30px;
+        opacity:1;
+        border:0;
+        /* background: rgba(255,255,255,0.8) */
+      }
+      
+      #vertical-menu a {
+        /* background-color: rgba(27, 22, 22, 0.8); */
+        color: white;
+        display: block;
+        padding: 12px;
+        text-decoration: none;
+        border-radius:30px
+      }
+
+      
+      /* #vertical-menu a:hover {
+        /* background-color: #ccc; */
+      /* } */ 
+      
+      #vertical-menu a.active {
+        background-color: rgba(209, 229, 190, 0.5);
+
+      }
+ 
+
+      #popup-form{
+        font-family:'Courier New', Courier, monospace;
+        max-height:300px;
+        width:130px;
+        background-color:rgba(255, 255, 255, 0.5);
+    
+    }
+
+     #popup-button{
+        background-color: white;
+        /* opacity:0.8; */
+        border:0;
+        border-radius:40px;
+
+
+     }
+
+     #popup-button a.active {
+        background-color: #D1E5BE;
+      }
+ 
+      #info_text {
+        font-family: 'Courier New', monospace;
+        /* text-transform: capitalize; */
+        outline: 0;
+        background:rgba(27, 22, 22, 0.8);
+        height:50%;
+        width: 100%;
+        border: 0;
+        margin: 0 0 15px;
+        padding: 15px;
+        color: white;
+        font-size: 14px;
+        cursor: pointer; /* Black background with opacity */
+        z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+        /* cursor: pointer; Add a pointer on hover */
+      }
+
+    /* for the profile section on the marker */
+      .dropdown {
+        position: relative;
+        display: inline-block;
+      }
+      
+      .dropdown-content {
+        display: none;
+        background-color: rgba( 255, 255, 255, 0.5);
+        position: absolute;
+        min-width: 160px;
+        padding: 12px 16px;
+        z-index: 500;
+        border-radius:30px;
+      }
+      
+      .dropdown:hover .dropdown-content {
+        display: block;
+      }
+
+      #logout{
+        font-family: 'Courier New', monospace;
+                text-transform: capitalize;
+                outline: 0;
+                height:50px;
+                background:rgba(195, 197, 196, 0.8);
+                width: 100%;
+                border: 0;
+                color: white;
+                font-size: 14px;
+                cursor: pointer; /* Black background with opacity */
+                z-index: 2;
+                margin: 0 0 15px;
+                bottom:50px;
+
+      }
+
+      #refresh_button {
+        position: absolute;
+        padding: 10px;
+        /* z-index: 500; */
+        border-radius: 30px;
+        opacity:0.9;
+        border:0;
+        background: rgba(255,255,255,0.8)
+      }
+
+          /* Set the button to change colour when hovered over*/
+    #refresh_button:hover, #refresh_button:active{
+        background: rgba(255, 255, 255, 0.8);
+    };
+
+    #avatar{
+        padding: 10px;
+        z-index: 500;
+        border-radius: 30px;
+        opacity:0.7;
+        border:0;
+        color:white;
+        background-color:white;
+        
+
+
+    }
+
+    #man.active, #woman.active, #girl.active, #boy.active{
+        background-color:#D1E5BE;
+    }
+
+
+
+    #radius_selection{
+        border:0;
+        background: rgba(0,0,0,0);
+        right:50%;
+
+
+    }
+
+    .custom-select{
+        font-family: 'Courier New', monospace;
+        font-size:11px;
+        outline: 0;
+        /* height:30px; */
+        background-color:rgba(255, 255, 255, 0.5);
+        color:black;
+        border:0;
+        border-radius:20px;
+
+    }
+
+    .custom-select select {
+        background-color:rgba(255, 255, 255, 0);
+        color:black;
+        border:0;
+        border-radius:10px;
+        appearance: none;    
+    }
+
+
+         /* Hide the register form to only show the login */
+    #edit_mode{
+        display: none;
+    }
+        /* Hide the register form to only show the login */
+        #view_mode{
+            display: block;
+        }
+
+
+.edit_form{
+    font-family: 'Courier New', monospace;
+    font-size:11px;
+    outline: 0;
+    /* height:30px; */
+    background-color:rgba(255, 255, 255, 0.5);
+    color:black;
+    border:0;
+    border-radius:20px;
+
+}
+  

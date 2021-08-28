@@ -1,0 +1,73 @@
+{
+    "POIs": {
+        key: {
+            "geometry": {
+                "coordinates" :{
+                   "0" : value,
+                   "1" : value,
+                },
+                "type" : "point",
+            }, "properties":{
+                "class": value,
+                "description": value,
+                "creator": value,
+                "name": value,
+                "rating" : 0,
+                "username": value,
+            }
+        }
+    }
+    "users": {
+        key: {
+            "age": value,
+            "avatar": value,
+            "first_name" : value,
+            "last_name" : value,
+            "lat": value,
+            "lng": value,
+            "points": 0,
+            "username": value,
+        },
+    }
+}
+
+<script>
+
+    // query the database to get the information of the current user’s points
+        users.orderByKey().equalTo(userId).on('child_added', (snapshot) => {
+            var info = snapshot.val();
+            var points = info["points"];
+            document.getElementById('points').innerHTML = "Your points: " + points + "pts."
+        });
+
+
+
+
+        // encrypt and set password
+                let encrypted_lat = Tea.encrypt(e.latlng['lat'], "password_lat");
+                let encrypted_lng = Tea.encrypt(e.latlng['lng'], "password_lng");
+        // decrypt using password
+                let decrypted_lat = Tea.decrypt(encrypted_lat, "password_lat");
+                let decrypted_lng = Tea.decrypt(encrypted_lng, "password_lng");
+        
+
+
+            //set the touchtime to 0
+            var touchtime = 0;
+
+            // set map dbl click event (for mobile)
+            map.on('click', function(e) {
+
+                if (touchtime == 0) {
+                    // set first click
+                    touchtime = new Date().getTime();
+                } else {
+                // compare first click to this click and see if they 
+                // occurred within double click threshold 
+                if (((new Date().getTime()) - touchtime) < 800) {
+                    // create a geojson point 
+                    const geojson = L.marker(e.latlng).toGeoJSON();
+                }}});
+            
+
+</script>

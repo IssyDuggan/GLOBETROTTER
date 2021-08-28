@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <!-- Required meta tags -->
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+ <!-- Create the title-->
+ <title>GlobeTrotter</title>
+ 
+ <!-- Load firebase-->
+ <!-- The core Firebase JS SDK is always required and must be listed first -->
+ <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-app.js"></script>
+ <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-database.js"></script>
+ <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-auth.js"></script>
+            
+<!-- Link to CSS -->
+<link rel="stylesheet" href="intro.css">
+
+</head>
+
+<body onload="initDb()">
+        <!-- create a div for the map and menu -->
+        <div class="row" > 
+                
+            <div class="col-xs-6" id="vertical-menu">
+                <a href="profile.html" ><img src="profile1.png" style="width:30px"></a> 
+                <a href="basemap.html"><img src="marker.png" style="width:30px;"></a>
+                <a href="findfriends.html" class="active"><img src="bag.png" style="width:30px;"></a>
+            </div>
+
+             <!-- A division to hold the profile form -->
+             <div class="col-xs-6" id="form" style="width:70%">
+                    <img src="bag.png" style="width:60px;">
+                    <h1>Your Rucksack</h1>
+                    <p id="points"></p>
+                    <p>Add friends in your rucksack </p>
+                    <div id="createProfile">
+                    <label for="yourCode">Your code: </label>
+                    <input type="text" name="yourCode" id="yourCode">
+                    <label for="addFriends">Add friends: </label>
+                    <input type="text" name="addFriends" id="addFriends">
+                    <button id=addFriendsbtn onclick="addfriends()">Add</button>
+                    <p>Your friends:</p>
+                    <!-- <p id="yourFriends"></p> -->
+                    <div id="yourFriends"></div>
+                </div>
+        </div>
+
+
+<script>	
+
+        // a function to add friends to your network
+        function addfriends(){
+
+                //get the code added in the addfriends box
+                var friend = document.getElementById("addFriends").value;
+                //console.log(friend)
+
+                // make a reference to the users database 
+                const users = firebase.database().ref('users');
+
+                // query the databse to get information of the friend added 
+                users.orderByKey().equalTo(friend).on('child_added', (snapshot) => {
+
+                    var info = snapshot.val();
+                    //get the friend information 
+                    var username = info.username;
+                    var points = info.points;
+                    var avatar = info.avatar;
+                    var lat = info.lat;
+                    var lng = info.lng;
+
+                    // only store the username and points, location and avatar in the friend database (to save storage)
+                    var friendinfo = {
+                        username: username,
+                        points: points,
+                        avatar: avatar,
+                        lat: lat,
+                        lng: lng
+                    }
+                    const userId = sessionStorage.uid
+                    //make a reference to the friends section of the current users' profile 
+                    const friends = users.child(userId).child('friends');
+
+                    // push the data into the database, set inline callback
+                    friends.push(friendinfo, function(error) {
+
+                            //if no error is returned to the callback, then it was loaded successfully
+                            if (!error) {
+                                console.log("successfully added friend!");
+
+                            // otherwise pass the error to the console
+                            } else {
+                                console.error(error);
+                                window.alert('Could not add friend, try again!')
+                            }
+                    });
+            
+                });
+        };
+
+        //function to iniitalise the databse
+        function initDb(){
+
+        
+                // Load Firebase configuration or Assessment 2 app
+                const firebaseConfig = {
+                    apiKey: "AIzaSyBuduFOLQ40g1UNdo_1JHPnrT36pN8q6zc",
+                    authDomain: "project-name-4a9df.firebaseapp.com",
+                    databaseURL: "https://project-name-4a9df-default-rtdb.firebaseio.com",
+                    projectId: "project-name-4a9df",
+                    storageBucket: "project-name-4a9df.appspot.com",
+                    messagingSenderId: "389888460979",
+                    appId: "1:389888460979:web:c4df9d8b2685a2264c48c6",
+                    measurementId: "G-LVVKK9S300"
+                };
+
+                // Initialize Firebase
+                firebase.initializeApp(firebaseConfig);
+                firebase.auth().currentUser;
+                const userId = sessionStorage.uid
+                document.getElementById('yourCode').value = userId;
+
+                var pois = firebase.database().ref('POIs');
+                
+                // var creator = pois.orderByChild('properties/creator').equalTo(userId);
+                                        // Find all points equal to the selection 
+                                        //var ratings = pois.child('properties/creator').child(userId)
+                                        
+                                // this doesnt qork!!!!
+                                        // var ratings_list = [];
+                                        // creator.on("child_added", (snapshot) => {
+
+                                        //                 var data = snapshot.val();
+
+                                        //                 var rating = String(data["properties"]["rating"]);
+                                        //                 //console.log(rating)
+                                        //                //if there is a rating add it to the list 
+                                        //                 if (rating !== "0"){
+                                        //                     ratings_list.push(rating)
+                                        //                 };
+                                        // });
+
+                                        // console.log(ratings_list);
+                                        // var lengthr = ratings_list.length;
+                                        // console.log(lengthr)
+
+                // make a reference to the 'users' database 
+                const users = firebase.database().ref('users');
+
+                // query the database to get the information of the current user according to the userId
+                users.orderByKey().equalTo(userId).on('child_added', (snapshot) => {
+                    //console.log(snapshot.val());
+                    var info = snapshot.val();
+                    var points = info["points"];
+                    document.getElementById('points').innerHTML = "Your points: " + points + "pts."
+                    var friends = info["friends"]
+                });
+
+                // find the friends within the users database
+                var friends = users.child(userId).child('friends');
+
+                // get the friends out of the database 
+                friends.on('child_added', (snapshot) => {
+                    var friendsinfo = snapshot.val();
+                    var username = friendsinfo['username']
+                    var points = friendsinfo['points']
+                    //console.log(username,points)
+                    
+                    //add all the friends to a div to show each one and their points
+                    var para = document.createElement("P");               // Create a <p> element
+                        para.innerText = username + ": " + points + "pts.";               // Insert text
+                        document.getElementById("yourFriends").appendChild(para);
+
+            
+                });
+                
+            };
+    
+</script>
+</body>
+</html>
