@@ -1,65 +1,75 @@
 <!DOCTYPE html>
 <html>
-	<head>
-         <!-- Required meta tags -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0,shrink-to-fit=no,user-scalable=no">
 
-		<!-- Create the title-->
-			<title>GlobeTrotter</title>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1.0,shrink-to-fit=no,user-scalable=no">
 
-        <!-- import Rbush library -->
-        <script src="https://npmcdn.com/rbush@2.0.1/rbush.js"></script>
+    <!-- Create the title-->
+    <title> - Base Map</title>
+      <!-- import Rbush library -->
+      <script src="https://npmcdn.com/rbush@2.0.1/rbush.js"></script>
+        <!-- Load the CSS and JavaScript for Leaflet -->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css"
+        integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14="
+        crossorigin=""/>
+   
+        <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js"
+        integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg="
+        crossorigin=""></script>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-auth.js"></script>
 
-        <!-- The core Firebase JS SDK is always required and must be listed first -->
-        <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-app.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-database.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-auth.js"></script>
+    <!-- Load Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+        crossorigin="anonymous"></script>
 
-        <!-- Load Bootstrap -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 
-        <!-- Link to CSS -->
-        <link rel="stylesheet" href="intro.css"> 
+    
+    <!-- Link to CSS -->
+    <link rel="stylesheet" href="..CSS/intro.css">
 
- 		<!-- Load the CSS and JavaScript for Leaflet -->
- 		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" />
- 		<script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"></script>
+    <!-- load the star rating stuff -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+    
+    <!-- import the encyption library -->
+    <script src="../JavaScript/tea.js"></script>
 
-        <script src="http://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
-        <script src="js/leaflet-providers.js"></script>
+</head>
+<!-- Call the initMap function on load-->
 
-         <!-- load the star rating stuff -->
-         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<body onload="initMap()">
 
-         <!-- import the encyption library -->
-         <script src="Tea.js"></script>
+    <!-- create a div for the map and menu -->
+    <div class="row" id="map_container" >
 
-    </head>
-    <!-- Call the initMap function on load-->
-        <body onload="initMap()">
+        <!-- A division to hold the map style="position:absolute;width:100%; height:100%; margin: -1vw 3vw"-->
+        <div id="map" style="position:absolute;width:100%; height:100%;margin: 0vw 4vw">
 
-        <!-- create a div for the map and menu -->
-        <div class="row" id="map_container"> 
-                
-            <!-- A division to hold the map -->
-            <div id="map"> 
-                    
-                <!-- A division to hold the menu -->
-                <div id="vertical-menu" style="top:30px;">
-                    <a href="profile.html"><img src="profile1.png" style="width:30px;"></a>
-                    <a href="basemap.html" class="active"><img src="marker.png" style="width:30px;"></a>
-                    <a href="findfriends.html"><img src="bag.png" style="width:30px;"></a>
-                </div>
+            <!-- A division to hold the menu -->
+            <div id="vertical-menu" style="left:1vw;top:10vw;position:absolute;z-index:500">
+                <a href="profile.html"><img src="../CSS/Media/profile1.png" style="position:absolute;top:3vw;width:30px;"></a>
+                <a href="basemap.html" class="active"><img src="../CSS/Media/marker.png" style="position:absolute;top:11.5vw;width:30px;"></a>
+                <a href="findfriends.html"><img src="../CSS/Media/bag.png" style="position:absolute;top:20vw;width:30px;"></a>
             </div>
         </div>
-    
-    <script>   
+    </div>
+
+    <script>
 
         // setup global variables
         let map, last_clicked, tree
@@ -68,8 +78,31 @@
         const user_id = sessionStorage.uid
         const user_name = sessionStorage.username
 
+        /**
+         * Initialise the database into the global myDb variable
+         */
+        function initDb() {
+            // set the config object for firebase (get this from the Firebase Console)
+            const firebaseConfig = {
+                apiKey: "AIzaSyBuduFOLQ40g1UNdo_1JHPnrT36pN8q6zc",
+                authDomain: "project-name-4a9df.firebaseapp.com",
+                databaseURL: "https://project-name-4a9df-default-rtdb.firebaseio.com",
+                projectId: "project-name-4a9df",
+                storageBucket: "project-name-4a9df.appspot.com",
+                messagingSenderId: "389888460979",
+                appId: "1:389888460979:web:c4df9d8b2685a2264c48c6",
+                measurementId: "G-LVVKK9S300"
+            };
+
+            // initialise the firebase object
+            firebase.initializeApp(firebaseConfig);
+            firebase.auth().currentUser;
+
+
+        }
+
         // categorise the point
-        function categorise(snapkey) {  
+        function categorise(snapkey) {
 
             // var description = document.getElementById("description");  
             // document.getElementById("description").value = description.value;  
@@ -79,133 +112,583 @@
 
             // var tag = document.getElementById("tag");  
             // document.getElementById("tag").value = tags.options[tags.selectedIndex].text; 
-            
+
             last_clicked.properties.class = tags.options[tags.selectedIndex].text;//variable 
             document.getElementById("name_1").innerHTML = last_clicked.properties.name;
-            document.getElementById("describe").innerHTML =  "'" + last_clicked.properties.description + "'";
-            document.getElementById("class").innerHTML = "Category: " + last_clicked.properties.class ;
+            document.getElementById("describe").innerHTML = "'" + last_clicked.properties.description + "'";
+            document.getElementById("class").innerHTML = "Category: " + last_clicked.properties.class;
 
             // prepare the data to update in the database
             let updates = {};
-                updates["/POIs/" + snapkey] = last_clicked;
+            updates["/POIs/" + snapkey] = last_clicked;
 
-                // update the point location in the database and callback to console
-                firebase.database().ref().update(updates, function(error) {
-                    if (!error) {
+            // update the point location in the database and callback to console
+            firebase.database().ref().update(updates, function (error) {
+                if (!error) {
                     console.log("successfully updated firebase!");
-                    } else {
+                } else {
                     console.error(error);
-                    }
+                }
+            });
+        };
+
+        // delete the point info
+        function deleteInfo(snapkey) {
+
+            // var description = document.getElementById("description");  
+            // document.getElementById("description").value = description.value;  
+            console.log(last_clicked)
+            last_clicked.properties.description = "";
+
+            // var tag = document.getElementById("tag");  
+            // document.getElementById("tag").value = tags.options[tags.selectedIndex].text; 
+
+            last_clicked.properties.class = "";//variable 
+            document.getElementById("name_1").innerHTML = "";
+            document.getElementById("describe").innerHTML = "";
+            document.getElementById("class").innerHTML = ""; // do we need these? 
+
+            // prepare the data to update in the database
+            let updates = {};
+            updates["/POIs/" + snapkey] = null;
+
+            // update the point location in the database and callback to console
+            firebase.database().ref().update(updates, function (error) {
+                if (!error) {
+                    console.log("successfully deleted point info!");
+                } else {
+                    console.error(error);
+                }
+            });
+        };
+
+
+
+        // a function for loading the points on the map
+        function loadPoints(snapshot, radius) {
+
+            // initialise the rbush library
+            var tree = new rbush();
+
+            // get the click location from firebase
+            const newfeature = snapshot.val();
+
+            const x = newfeature.geometry.coordinates[1];
+            const y = newfeature.geometry.coordinates[0];
+
+            // insert into rtree
+            tree.insert(
+                {
+                    minX: x, // x
+                    minY: y, // y
+                    maxX: x, // x
+                    maxY: y, // y
+                    object: newfeature  // here you can put any info you want to retrieve - the whole point object
+                }
+            );
+
+            //this is where we need to define a bounding box based on the users location 
+            var lat = Tea.decrypt(sessionStorage.lat, "lat_password");
+            var lng = Tea.decrypt(sessionStorage.lng, "lng_password");
+            console.log(lat, lng)
+            var rad_deg = radius / 111000 /// change the radius from km to degrees - rough estimate!!!!
+
+            // get points within a defined area - returns array
+            const within_bounds = tree.search({
+                minX: lat - rad_deg, // centre (x - radius)
+                minY: lng - rad_deg, // centre (y - radius)
+                maxX: Number(lat) + rad_deg, // centre (x + radius)
+                maxY: Number(lng) + rad_deg// centre (y + radius)
+            });
+
+            //catch the error if the point is not within the bounds
+            if (typeof within_bounds[0] == "undefined") {
+                console.log('not within area')
+
+
+                //only add the point to the map if it is defined e.g. if it is within the bounds and has a name
+                // if no name, add a reminder
+            } else {
+
+                //get the new point
+                new_point = within_bounds[0]['object'];
+
+                //get marker info
+                marker_info = customMarker(snapshot, new_point)
+
+                //define myIcon
+                my_icon = marker_info.my_icon
+
+                //define pointInfo
+                point_info = marker_info.point_info
+
+                //create a marker group for all points
+                var all_points = L.layerGroup().addTo(map);
+
+                // add the point to the map (remembering to flip the coordinates)
+                const marker = L.marker(
+                    [new_point.geometry.coordinates[1], new_point.geometry.coordinates[0]],
+                    { draggable: true, icon: my_icon },
+                ).bindPopup(point_info).addTo(all_points);
+
+                //define the markerproperties
+                marker.properties = new_point.properties;
+
+                // add an event listener to the active marker 
+                marker.on('click', function (e) {
+                    last_clicked = e.target.toGeoJSON();
+                    last_clicked.properties = e.target.properties;
+                    document.getElementById("name_1").innerHTML = last_clicked.properties.name;
+                    document.getElementById("describe").innerHTML = "'" + last_clicked.properties.description + "'";
+                    document.getElementById("class").innerHTML = "Category: " + last_clicked.properties.class;
+                    document.getElementById('average_rating').innerHTML = "Rating: " + last_clicked.properties.rating.toFixed(1)
+
                 });
-           };
 
-            // delete the point info
-            function deleteInfo(snapkey) {  
+                // add a click listener to the array to delete markers (on dbl click)
+                //use the mobile dbl click 
+                var touchtime = 0;
+                marker.on("click", function (e) {
+                    if (touchtime == 0) {
+                        // set first click
+                        touchtime = new Date().getTime();
+                    } else {
+                        // compare first click to this click and see if they occurred within double click threshold
+                        if (((new Date().getTime()) - touchtime) < 800) {
+                            // double click occurred
+                            console.log("double clicked");
+                            // prevent the click event from being fired on the map as well
+                            L.DomEvent.stopPropagation;
 
-                    // var description = document.getElementById("description");  
-                    // document.getElementById("description").value = description.value;  
-                    console.log(last_clicked)
-                    last_clicked.properties.description = "";
+                            // prepare the data to update in the database (deleting is done by updating to null)
+                            let updates = {};
+                            updates["/POIs/" + snapshot.key] = null;
 
-                    // var tag = document.getElementById("tag");  
-                    // document.getElementById("tag").value = tags.options[tags.selectedIndex].text; 
+                            // update the point location in the database and callback to console
+                            firebase.database().ref().update(updates, function (error) {
+                                if (!error) {
+                                    console.log("successfully deleted point!");
 
-                    last_clicked.properties.class = "";//variable 
-                    document.getElementById("name_1").innerHTML = "";
-                    document.getElementById("describe").innerHTML =  "";
-                    document.getElementById("class").innerHTML = ""; // do we need these? 
+                                    // remove the marker from the map
+                                    e.target.remove();
+
+                                } else {
+                                    console.error(error);
+                                }
+                            });
+                            touchtime = 0;
+                        } else {
+                            // not a double click so set as a new first click
+                            touchtime = new Date().getTime();
+                        }
+                    }
+
+                });
+
+                // add a drag end listener to the array to update location
+                marker.on('dragend', function (e) {
 
                     // prepare the data to update in the database
                     let updates = {};
-                        updates["/POIs/" + snapkey] = null;
+                    updates["/POIs/" + snapshot.key] = e.target.toGeoJSON();
 
-                        // update the point location in the database and callback to console
-                        firebase.database().ref().update(updates, function(error) {
-                            if (!error) {
-                            console.log("successfully deleted point info!");
-                            } else {
+                    // update the point location in the database and callback to console
+                    firebase.database().ref().update(updates, function (error) {
+                        if (!error) {
+                            console.log("successfully updated firebase!");
+                        } else {
                             console.error(error);
-                            }
-                        });
+                        }
+                    });
+                });
+            }
+
+            // });
+
+        }; //finish function
+
+
+        //Rate the current point
+        function rate(snapkey) {
+            //console.log(sessionStorage.starRating)
+            sessionStorage.starRating = count
+            //console.log(lastClicked)
+
+            var star_rating = {
+                rating: count,
+            }
+
+            var pois = firebase.database().ref('POIs');
+            var ratings = pois.child(snapkey).child('properties/ratings');
+
+            // push the data into the database, set inline callback
+            ratings.push(star_rating, function (error) {
+
+                //if no error is returned to the callback, then it was loaded successfully
+                if (!error) {
+                    console.log("successfully added rating!");
+
+                    // otherwise pass the error to the console
+                } else {
+                    console.error(error);
+                }
+            });
+
+            var ratings_list = []
+            ratings.on('child_added', (snapshot) => {
+
+                var info = snapshot.val();
+                var rating = info["rating"]
+
+                ratings_list.push(rating)
+
+            });
+
+            // Getting sum of numbers
+            var sum = ratings_list.reduce(function (a, b) {
+                return Number(a) + Number(b);
+            }, 0);
+
+            // calculate the average 
+            var average = Number(sum) / (ratings_list.length)
+            //document.getElementById("pname").innerHTML = lastClicked.properties.name;
+            last_clicked.properties.rating = average;
+            // give the rating one decimal place
+            document.getElementById('average_rating').innerHTML = "Rating: " + last_clicked.properties.rating.toFixed(1)
+            let updates = {};
+            updates["/POIs/" + snapkey + "/properties/rating/"] = average;
+
+            // update the point location in the database and callback to console
+            firebase.database().ref().update(updates, function (error) {
+                if (!error) {
+                    console.log("successfully added a rating");
+                } else {
+                    console.error(error);
+                }
+            });
+
+
+
+        };
+
+
+
+        // a function to create the marker
+        function customMarker(snapshot, point) {
+
+            // //identify the creator 
+            var creator = point.properties.creator;
+            // //query the users database to find 
+            //     users = firebase.database().ref('users');
+
+            //     //query the data base to get the info of the creator
+            //     users.orderByKey().equalTo(creator).on('child_added', (snapshot) => {
+            //         info = snapshot.val();    
+            //         var username = info["username"];
+            //         sessionStorage.setItem('username', username)
+
+            //     });
+
+            // variable for the pop up 
+            const point_info = '<div id="popup-form" style="overflow-y:scroll;">\
+                                    <div id="view_mode">\
+                                        <h4 id="name_1" style="text-align:center"></h4>\
+                                        <p id="describe" style="text-align:center"></p>\
+                                        <p id="class" style="text-align:center"></p>\
+                                        <div class="stars" onclick="rate(\''+ snapshot.key + '\')" style="position:relative;left:15px">\
+                                                <span onmouseover="starmark(this)" onclick="starmark(this)" id="1one" style="font-size:15px;cursor:pointer;"  class="fa fa-star checked"></span>\
+                                                <span onmouseover="starmark(this)" onclick="starmark(this)" id="2one"  style="font-size:15px;cursor:pointer;" class="fa fa-star "></span>\
+                                                <span onmouseover="starmark(this)" onclick="starmark(this)" id="3one"  style="font-size:15px;cursor:pointer;" class="fa fa-star "></span>\
+                                                <span onmouseover="starmark(this)" onclick="starmark(this)" id="4one"  style="font-size:15px;cursor:pointer;" class="fa fa-star"></span>\
+                                                <span onmouseover="starmark(this)" onclick="starmark(this)" id="5one"  style="font-size:15px;cursor:pointer;" class="fa fa-star"></span>\
+                                        </div>\
+                                        <p id="average_rating" style="position:relative;left:20px;font-size:10px"></p>\
+                                        <div class="row">\
+                                            <button id="refresh_button" onclick="toggleVisibility(view_mode, comments),loadComments(\''+ snapshot.key + '\')" style="border:0;position:relative;left:10px">Comments</button>\
+                                            <button id="refresh_button" onclick="toggleVisibility(view_mode,edit_mode)" style="position:relative;left:10px">Edit</button>\
+                                        </div>\
+                                     </div>\
+                                    <div id="edit_mode" class="edit_form" style="position:relative;height:100%;">\
+                                        <label for="name">Name: </label>\
+                                        <input id="name" value=\''+ snapshot.val().properties.name + '\' class=name" type="text" style="position:relative; max-width:100%;border:10px;border-radius:20px;"/>\
+                                        <label for="description">Description: </label>\
+                                        <input id="description" value=\''+ snapshot.val().properties.description + '\' class="description" type="text" style="position:relative;border:10px; max-width:100%;border-radius:20px;""/>\
+                                        <label for="tags">Category: </label>\
+                                        <select name="tags" id="tags" style="position:relative; border-radius:20px;border:0;appearance: none;" >\
+                                            <option value="n/a"></option>\
+                                            <option value="Art">Art</option>\
+                                            <option value="Bars">Bars</option>\
+                                            <option value="GreenSpace">Green Space</option>\
+                                            <option value="Cafes">Cafes</option>\
+                                            <option value="Hostels">Hostels</option>\
+                                            <option value="Historical">Historical</option>\
+                                            <option value="Transport">Transport</option>\
+                                            <option value="Shops">Shops</option>\
+                                        </select>\
+                                        <div class="row">\
+                                            <button class="col-xs-6" id="popup-button" type="button" onclick="categorise(\''+ snapshot.key + '\'),toggleVisibility(view_mode,edit_mode)"><img src="../CSS/Media/tick.png" style="width:20px;"></button>\
+                                            <button class="col-xs-6" id="popup-button" type="button" onclick="deleteInfo(\''+ snapshot.key + '\')"><img src="../CSS/Media/remove.png" style="width:20px;" ></button>\
+                                        </div>\
+                                        <button onclick="toggleVisibility(view_mode,edit_mode)" id="refresh_button">Back</button>\
+                                    </div>\
+                                    <div id="comments" class="edit_form" style="position:relative;height:100%;display:none" >\
+                                    <div class="dropdown">\
+                                        <img src="../CSS/Media/profile1.png" style="width:20px">\
+                                        <div class="dropdown-content"style="z-index:500">\
+                                            <p>Added by: \''+ snapshot.val().properties.username + '\'</p>\
+                                        </div>\
+                                    </div>\
+                                    <label for="comment_input">Leave a comment:</label>\
+                                        <input id="comment_input" class="col-xs-6" style="position:relative;width:70%;"></input>\
+                                        <button onclick="addComment(\''+ snapshot.key + '\')"id="refresh_button" style="border:0;position:relative;width:10%"class="col-xs-6">></button>\
+                                        <div id="comment_box"></div>\
+                                        <button onclick="toggleVisibility(view_mode,comments), removeComments()" id="refresh_button">Back</button>\
+                                    </div>\
+                                    </div>';
+
+            //define the marker
+            const my_icon = L.icon({
+                iconUrl: '../CSS/Media/marker2.png',
+                iconSize: [35, 35], // size of the icon
+            });
+
+            // make an array to return both the icon and the customised marker
+            return {
+                my_icon,
+                point_info,
             };
 
+        }
+
+        //setCategory(\''+snapshot.val().properties.class+'\')
+        // // function to set the category on the marker
+        // function setCategory(category){
+        //     console.log(category)
+        //     document.getElementById('tags').value = category;
+        // };
+
+
+        /**
+            * This marks colours in the stars when they are hovered over
+            */
+        function starmark(item) {
+            count = item.id[0];
+            sessionStorage.starRating = count;
+            var subid = item.id.substring(1);
+            // loop through the stars
+            for (var i = 0; i < 5; i++) {
+                // if the index is smaller than the number chosen, it needs to show as green - eg selected
+                if (i < count) {
+                    document.getElementById((i + 1) + subid).style.color = "#D1E5BE";
+                    // if it is bigger, it hasnt been selected so it stays black 
+                } else {
+                    document.getElementById((i + 1) + subid).style.color = "black";
+                }
+            }
+
+        };
+        /**
+            * This does the actual toggling takes two arguments 
+            */
+        function toggleVisibility(a, b) {
+
+            // b is visible a is invisible
+            if (a.style.display === 'block') { //login
+                document.getElementById(b.id).style.display = 'block'; //editmode (b) comments
+                document.getElementById(a.id).style.display = 'none'; //login //viewmode (a)
+
+            }
+
+            // a is visible b is invisible
+            else {
+                document.getElementById(b.id).style.display = 'none';//register //editmode (b)comments
+                document.getElementById(a.id).style.display = 'block';//login //viewmode (a)
+
+            }
+
+        };
+
+        /**
+        * This loads the comments in the customised marker
+        */
+
+        function loadComments(snapkey) {
+            //make a reference to the database
+            const pois = firebase.database().ref('POIs');
+            const comments_db = pois.child(snapkey).child('properties/comments');
+
+            //make an empty list of comments
+            var comments_list = []
+            // get the comments out of the database 
+            comments_db.on('child_added', (snapshot) => {
+
+                var info = snapshot.val();
+
+                // make a dictonary holding the username and comment
+                var comment_info = {
+                    username: info['user'],
+                    comment: info['comment']
+                }
+                // add the comment info to the list 
+                comments_list.push(comment_info);
+            });
+
+            //loop through the list of comments
+            var i;
+            for (i = 0; i < comments_list.length; i++) {
+                const username = comments_list[i]['username']
+                const comment = comments_list[i]['comment']
+                const comment_box = document.getElementById('comment_box')
+
+                // if the comment box already contains the comment, dont print it??
+                var para = document.createElement("P");               // Create a <p> element
+                para.innerText = comment + " -" + username;            // Insert text
+                document.getElementById("comment_box").appendChild(para);
+                console.log('added comment!')
+            }
+        }
+
+
+
+
+        //this refreshes the comments when you go off the page
+        function removeComments() {
+            document.getElementById("comment_box").innerHTML = "";
+            console.log('deleted comments!')
+        }
+
+        //add a comment, add it in the database
+        function addComment(snapkey) {
+            const pois = firebase.database().ref('POIs');
+            const users = firebase.database().ref('users');
+            const comments_db = pois.child(snapkey).child('properties/comments');
+            const comment = document.getElementById('comment_input').value;
+
+
+            //get the username of the current user
+            users.orderByKey().equalTo(user_id).on('child_added', (snapshot) => {
+                info = snapshot.val();
+                const username = info["username"];
+                const comment_data = {
+                    comment: comment,
+                    user: username,
+                }
+                // push the data into the database, set inline callback
+                comments_db.push(comment_data, function (error) {
+
+                    //if no error is returned to the callback, then it was loaded successfully
+                    if (!error) {
+                        console.log("successfully added comment!");
+
+                        // otherwise pass the error to the console
+                    } else {
+                        console.error(error);
+                    }
+                });
+
+                var comments_list = []
+                comments_db.on('child_added', (snapshot) => {
+                    var info = snapshot.val();
+                    var key = snapshot.key;
+                    //console.log(info["comments"])
+                    var comment_info = {
+                        username: info['user'],
+                        comment: info['comment']
+                    }
+                    comments_list.push(comment_info);
+
+                });
+
+                // console.log(comments_list[comments_list.length-1])
+                var last_comment = comments_list[comments_list.length - 1]['comment']
+                var last_username = comments_list[comments_list.length - 1]['username']
+                //add all the friends to a div to show each one and their points
+                var para = document.createElement("P");               // Create a <p> element
+                para.innerText = last_comment + " -" + last_username;            // Insert text
+                document.getElementById("comment_box").appendChild(para);
+            });
+        };
+
         // initialise the map, get the location and update it 
-        function initMap(){
+        function initMap() {
 
 
             // before we do anything, lets initialise the database
             initDb();
 
             // this is a variable that holds the reference to the Leaflet map object
-             map = L.map('map',{
+            map = L.map('map', {
                 zoomControl: false //disable automatic zoom control
+                
             });
 
             // set the view immediately when it opens 
-            map.locate({setView: true,enableHighAccuracy: true, maxZoom:   30});
+            map.locate({ setView: true, enableHighAccuracy: true, maxZoom: 30 });
 
             // this adds the basemap tiles to the map
-            L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{ //https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', { //https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
                 // apiKey: '<78cc4801c951492dab677b6808abb4f4>'
-                apiKey: '<7564289c-1ea0-46f7-8958-3945fa604dc2>'
+                apiKey: '<7564289c-1ea0-46f7-8958-3945fa604dc2>',
+                maxZoom:16
             }).addTo(map);
 
             // add the dropdown for adjusting radius
-            var radius_legend = L.control({position: 'topright'});
-                radius_legend.onAdd = function (map) {
-                 var div = L.DomUtil.create('div', 'infolegend');
+            var radius_legend = L.control({ position: 'topright' });
+            radius_legend.onAdd = function (map) {
+                var div = L.DomUtil.create('div', 'infolegend');
 
-            // a div for the radius filter         
-                div.innerHTML ='<div class="custom-select">\
-                                    <label for="radius_selection">Radius:</label>\
-                                    <select name="radiusSelection" id="radius_selection" onchange="updateSelection()">\
-                                    <option value="0">0</option>\
-                                    <option selected value ="100">100</option>\
-                                    <option value="250">250</option>\
-                                    <option value="500">500</option>\
-                                    <option value="1000">1000</option>\
-                                    <option value="2000">2000</option>\
-                                    </select>\
-                                </div>\
-                                '
+                // a div for the radius filter         
+                div.innerHTML = '<div class="custom-select">\
+                        <label for="radius_selection">Radius:</label>\
+                        <select name="radiusSelection" id="radius_selection" onchange="updateSelection()">\
+                        <option value="0">0</option>\
+                        <option value="100">100</option>\
+                        <option value="250">250</option>\
+                        <option value="500">500</option>\
+                        <option value="1000">1000</option>\
+                        <option selected value ="2000">2000</option>\
+                        </select>\
+                    </div>\
+                    '
                 div.firstChild.onmousedown = div.firstChild.ondblclick = L.DomEvent.stopPropagation;
                 return div;
             };
             radius_legend.addTo(map); //add to the map
 
             // add the dropdown for adjusting the category selection 
-            var categories = L.control({position: 'topleft'});
+            var categories = L.control({ position: 'topleft' });
             categories.onAdd = function (map) {
                 var div = L.DomUtil.create('div', 'categories legend');
 
                 // a div for the category filter
-                div.innerHTML ='<div class="custom-select" >\
-                                <label for="myList3">Category:</label>\
-                                    <select name"selection" id="category_selection" onchange="updateSelection()">\
-                                    <option value="All">All</option>\
-                                    <option value="Bars">Bars</option>\
-                                    <option value ="Art">Art</option>\
-                                    <option value="Cafes">Cafes</option>\
-                                    <option value="Hostels">Hostels</option>\
-                                    <option value="Culture">Culture</option>\
-                                    <option value="Transport">Transport</option>\
-                                    <option value="Shops">Shops</option>\
-                                    </select>\
-                                </div>\
-                                '
+                div.innerHTML = '<div class="custom-select" >\
+                    <label for="myList3">Category:</label>\
+                        <select name"selection" id="category_selection" onchange="updateSelection()">\
+                        <option value="All">All</option>\
+                        <option value="Bars">Bars</option>\
+                        <option value ="Art">Art</option>\
+                        <option value="Cafes">Cafes</option>\
+                        <option value="Hostels">Hostels</option>\
+                        <option value="Culture">Culture</option>\
+                        <option value="Transport">Transport</option>\
+                        <option value="Shops">Shops</option>\
+                        </select>\
+                    </div>\
+                    '
                 div.firstChild.onmousedown = div.firstChild.ondblclick = L.DomEvent.stopPropagation;
                 return div;
             };
             categories.addTo(map); //add to the map
-            
+
             //reference the user databae
             const users = firebase.database().ref('users');
             // // add one to the user's profile with the userdb.child(creator)
             users.orderByKey().equalTo(user_id).on('child_added', (snapshot) => {
                 data = snapshot.val();
-                avatar = data['avatar'];
-                sessionStorage.setItem('avatar', avatar); //store the avatar choice            
+                // avatar = data['avatar'];
+                avatar_path = avatar.concat('../CSS/Media/', data['avatar'])
+                sessionStorage.setItem('avatar', avatar_path); //store the avatar choice            
             });
 
             // placeholder for the L.marker and path
@@ -217,31 +700,31 @@
                 if (current_position) {
                     map.removeLayer(current_position);
                 }
-            
+
                 //set the icon 
                 var my_icon = L.icon({
-                        iconUrl: sessionStorage.avatar,//'walkingGirl.gif',
-                        iconSize:     [30, 30], // size of the icon
-                        });
+                    iconUrl: '../CSS/Media/' + sessionStorage.avatar,//'walkingGirl.gif',
+                    iconSize: [30, 30], // size of the icon
+                });
                 console.log(sessionStorage.avatar)
 
 
                 //get the current position and add a marker
-                current_position = L.marker(e.latlng,{icon: my_icon, opacity:0.8}).addTo(map)
-                //console.log(current_position)
-                   .bindPopup("You are here!");
+                current_position = L.marker(e.latlng, { icon: my_icon, opacity: 0.8 }).addTo(map)
+                    //console.log(current_position)
+                    .bindPopup("You are here!");
 
                 // use the Tea.js 'Tiny Encryption Algorithm' to encrypt the lat and lng
                 let encrypted_lat = Tea.encrypt(e.latlng['lat'], "lat_password");
                 let encrypted_lng = Tea.encrypt(e.latlng['lng'], "lng_password");
-                
+
                 //store the current location
                 sessionStorage.setItem('lat', encrypted_lat)
                 sessionStorage.setItem('lng', encrypted_lng)
 
                 //make an object called location storing the decrypted lat and lng 
                 let location = {
-                    lat: Tea.decrypt(sessionStorage.lat, "lat_password") ,
+                    lat: Tea.decrypt(sessionStorage.lat, "lat_password"),
                     lng: Tea.decrypt(sessionStorage.lng, "lng_password")
                 }
 
@@ -259,7 +742,7 @@
                 console.log('succeddfully added line')
             }
 
-                function onLocationError(e) {
+            function onLocationError(e) {
                 alert(e.message);
             }
 
@@ -271,58 +754,58 @@
 
                 // // add one to the user's profile with the userdb.child(creator)
                 users.orderByKey().equalTo(user_id).on('child_added', (snapshot) => {
-                                data = snapshot.val();
-                                data['lat'] = sessionStorage.lat;
-                                data['lng'] = sessionStorage.lng;
+                    data = snapshot.val();
+                    data['lat'] = sessionStorage.lat;
+                    data['lng'] = sessionStorage.lng;
 
-                // update the latlng in the user's profile
-                let updates = {};
-                updates["/users/" + user_id] = data;
+                    // update the latlng in the user's profile
+                    let updates = {};
+                    updates["/users/" + user_id] = data;
 
-                // update the point location in the database and callback to console
-                firebase.database().ref().update(updates, function(error) {
-                    if (!error) {
-                    console.log("successfully updated location");
-                    } else {
-                    console.error(error);
-                    }
-                });
+                    // update the point location in the database and callback to console
+                    firebase.database().ref().update(updates, function (error) {
+                        if (!error) {
+                            console.log("successfully updated location");
+                        } else {
+                            console.error(error);
+                        }
+                    });
 
                     // relocate the user > {setView: true, maxZoom: 18, watch: true,}
                     map.locate({
                         setView: false, //dont reset the view each time !
                         enableHighAccuracy: true
                     });
-                                // sessionStorage.setItem('avatar', avatar);
+                    // sessionStorage.setItem('avatar', avatar);
 
                 });
-                };
+            };
 
-                // find the friends within the users database
-                var friends = users.child(user_id).child('friends');
+            // find the friends within the users database
+            var friends = users.child(user_id).child('friends');
 
-                // get the friends out of the database 
-                friends.on('child_added', (snapshot) => {
-                    const friendsinfo = snapshot.val();
-                    const username = friendsinfo['username']
-                    const points = friendsinfo['points']
-                    const avatar = friendsinfo['avatar']
-                    const lat =  Tea.decrypt(friendsinfo['lat'], "lat_password")
-                    const lng = Tea.decrypt(friendsinfo['lat'], "lng_password")
-                    console.log(avatar)
-                    //customiser the icon
-                    var my_icon = L.icon({
-                        iconUrl: avatar,//'walkingGirl.gif',
-                        iconSize:     [40, 40], // size of the icon
-                    
-                    }); 
-                    L.marker([lat, lng],{icon: my_icon}).addTo(map)
+            // get the friends out of the database 
+            friends.on('child_added', (snapshot) => {
+                const friendsinfo = snapshot.val();
+                const username = friendsinfo['username']
+                const points = friendsinfo['points']
+                const avatar = friendsinfo['avatar']
+                const lat = Tea.decrypt(friendsinfo['lat'], "lat_password")
+                const lng = Tea.decrypt(friendsinfo['lat'], "lng_password")
+                console.log(avatar)
+                //customiser the icon
+                var my_icon = L.icon({
+                    iconUrl: '../CSS/Media/' + avatar,//'walkingGirl.gif',
+                    iconSize: [40, 40], // size of the icon
+
+                });
+                L.marker([lat, lng], { icon: my_icon }).addTo(map)
                     //console.log(current_position)
                     .bindPopup(username);
-                    //console.log(username,points
+                //console.log(username,points
 
-                });
-        
+            });
+
 
             // call locate every 6 seconds
             setInterval(locate, 6000);
@@ -331,7 +814,7 @@
             var touchtime = 0;
 
             // set map dbl click event (for mobile)
-            map.on('click', function(e) {
+            map.on('click', function (e) {
 
                 if (touchtime == 0) {
                     // set first click
@@ -341,20 +824,20 @@
                     if (((new Date().getTime()) - touchtime) < 800) {
                         // create a geojson point 
                         const geojson = L.marker(e.latlng).toGeoJSON();
-                    
+
                         // //identify the properties of the point 
                         geojson.properties = {
-                            name:'',
+                            name: '',
                             description: '',
-                            class:'',
+                            class: '',
                             creator: user_id,
-                            rating:0,
+                            rating: 0,
                             username: user_name,
                         };
 
                         // //define the creator of the point
                         creator = geojson.properties.creator
-                        
+
                         // //reference the userdb
                         let users = firebase.database().ref('users');
 
@@ -365,79 +848,55 @@
                             let updates = {};
                             updates["/users/" + creator] = data;
 
-                        // update the point location in the database and callback to console
-                        firebase.database().ref().update(updates, function(error) {
-                            if (!error) {
-                            console.log("successfully updated user points");
-                            } else {
-                            console.error(error);
-                            }
+                            // update the point location in the database and callback to console
+                            firebase.database().ref().update(updates, function (error) {
+                                if (!error) {
+                                    console.log("successfully updated user points");
+                                } else {
+                                    console.error(error);
+                                }
                             });
                         });
                         const pois = firebase.database().ref('POIs');
                         // push the data into the database, set inline callback
-                        pois.push(geojson, function(error) {
+                        pois.push(geojson, function (error) {
 
                             //if no error is returned to the callback, then it was loaded successfully
                             if (!error) {
                                 console.log("successfully added to firebase!");
 
-                            // otherwise pass the error to the console
+                                // otherwise pass the error to the console
                             } else {
                                 console.error(error);
                             }
                         });
-                        } else {
+                    } else {
                         // not a double click so set as a new first click
                         touchtime = new Date().getTime();
-                        }
-                    }})
+                    }
+                }
+            })
 
             //load the points onto the map according to the current selection
             updateSelection();
-        
+
         };
 
-        /**
-         * Initialise the database into the global myDb variable
-         */
-         function initDb(){
-            // set the config object for firebase (get this from the Firebase Console)
-            const firebaseConfig = {
-                apiKey: "AIzaSyBuduFOLQ40g1UNdo_1JHPnrT36pN8q6zc",
-                authDomain: "project-name-4a9df.firebaseapp.com",
-                databaseURL: "https://project-name-4a9df-default-rtdb.firebaseio.com",
-                projectId: "project-name-4a9df",
-                storageBucket: "project-name-4a9df.appspot.com",
-                messagingSenderId: "389888460979",
-                appId: "1:389888460979:web:c4df9d8b2685a2264c48c6",
-                measurementId: "G-LVVKK9S300"
-                    };
-
-            // initialise the firebase object
-            firebase.initializeApp(firebaseConfig);
-            firebase.auth().currentUser;
-
-        
-        }
-
-
-
         // an event listener for when the selections change on the map 
-        function updateSelection (){
+        function updateSelection() {
 
             // First, clear the existing layers (but not the map or the avatar)
             map.eachLayer(function (layer) {
                 if (layer._url !== undefined) {
-                }else if(layer._icon !== undefined){
-                }else{
-                        map.removeLayer(layer);
-                        console.log(layer)
+                } else if (layer._icon !== undefined) {
+                } else {
+                    map.removeLayer(layer);
+                    console.log(layer)
                 }
-                
+
             });
             var category_selection = document.getElementById("category_selection");
-            const selected_category = category_selection.options[category_selection.selectedIndex].text;  
+            const selected_category = category_selection.options[category_selection.selectedIndex].text;
             console.log(selected_category);
             //define the radius based on the current seletion 
             var radius_selection = document.getElementById("radius_selection");
@@ -445,474 +904,29 @@
 
             const pois = firebase.database().ref('POIs');
             // if the selection is all, load points based on the selected radius 
-            if (selected_category == 'All'){
-                    
-                    // this is called for everything in the database when the page loads, THEN for each new one
-                    pois.on('child_added', (snapshot) => {
+            if (selected_category == 'All') {
 
-                        //call fucnction to load points
-                        loadPoints(snapshot, radius)
-                    });
+                // this is called for everything in the database when the page loads, THEN for each new one
+                pois.on('child_added', (snapshot) => {
+
+                    //call fucnction to load points
+                    loadPoints(snapshot, radius)
+                });
 
 
-                }else{
+            } else {
 
-                    // Find all points equal to the selection 
-                    pois.orderByChild('properties/class').equalTo(selected_category).on("child_added", (snapshot) => {
-                   
-                        //call fucnction to load points
-                        loadPoints(snapshot,radius)
+                // Find all points equal to the selection 
+                pois.orderByChild('properties/class').equalTo(selected_category).on("child_added", (snapshot) => {
 
-                    });
-                }
+                    //call fucnction to load points
+                    loadPoints(snapshot, radius)
+
+                });
+            }
         }
 
+    </script>
+</body>
 
-// a function for loading the points on the map
-function loadPoints(snapshot, radius){
-
-                // initialise the rbush library
-                var tree = new rbush();
-
-                // get the click location from firebase
-                const newfeature = snapshot.val();
-
-                const x = newfeature.geometry.coordinates[1];
-                const y = newfeature.geometry.coordinates[0];
-                
-                // insert into rtree
-                tree.insert(
-                    {
-                        minX: x, // x
-                        minY: y, // y
-                        maxX: x, // x
-                        maxY: y, // y
-                        object: newfeature  // here you can put any info you want to retrieve - the whole point object
-                    }
-                );
-
-                //this is where we need to define a bounding box based on the users location 
-                var lat = Tea.decrypt(sessionStorage.lat, "lat_password");
-                var lng = Tea.decrypt(sessionStorage.lng, "lng_password");
-                console.log(lat,lng)
-                var rad_deg = radius / 111000 /// change the radius from km to degrees - rough estimate!!!!
-
-                // get points within a defined area - returns array
-                const within_bounds = tree.search({
-                    minX: lat - rad_deg, // centre (x - radius)
-                    minY: lng - rad_deg, // centre (y - radius)
-                    maxX: Number(lat) + rad_deg, // centre (x + radius)
-                    maxY: Number(lng) + rad_deg// centre (y + radius)
-                    });
-
-                //catch the error if the point is not within the bounds
-                if (typeof within_bounds[0] == "undefined") {
-                    console.log('not within area')
-                    
-                    
-                //only add the point to the map if it is defined e.g. if it is within the bounds and has a name
-                // if no name, add a reminder
-                }else{
-
-                        //get the new point
-                        new_point = within_bounds[0]['object'];
-
-                        //get marker info
-                        marker_info = customMarker(snapshot, new_point)
-
-                        //define myIcon
-                        my_icon = marker_info.my_icon
-
-                        //define pointInfo
-                        point_info = marker_info.point_info
-
-                        //create a marker group for all points
-                        var all_points = L.layerGroup().addTo(map);
-                
-                        // add the point to the map (remembering to flip the coordinates)
-                        const marker = L.marker(
-                            [new_point.geometry.coordinates[1], new_point.geometry.coordinates[0]],
-                            { draggable: true, icon: my_icon},
-                        ).bindPopup(point_info).addTo(all_points);
-                
-                        //define the markerproperties
-                        marker.properties = new_point.properties;
-
-                        // add an event listener to the active marker 
-                        marker.on('click',function(e) {
-                            last_clicked = e.target.toGeoJSON();
-                            last_clicked.properties = e.target.properties;
-                            document.getElementById("name_1").innerHTML = last_clicked.properties.name;
-                            document.getElementById("describe").innerHTML =  "'" + last_clicked.properties.description + "'";
-                            document.getElementById("class").innerHTML = "Category: " + last_clicked.properties.class;
-                            document.getElementById('average_rating').innerHTML = "Rating: " + last_clicked.properties.rating.toFixed(1)
-
-                        });
-
-                            // add a click listener to the array to delete markers (on dbl click)
-                            //use the mobile dbl click 
-                            var touchtime = 0;
-                            marker.on("click", function(e) {
-                                if (touchtime == 0) {
-                                    // set first click
-                                    touchtime = new Date().getTime();
-                                } else {
-                                    // compare first click to this click and see if they occurred within double click threshold
-                                    if (((new Date().getTime()) - touchtime) < 800) {
-                                        // double click occurred
-                                        console.log("double clicked");
-                                       // prevent the click event from being fired on the map as well
-                                        L.DomEvent.stopPropagation;
-
-                                        // prepare the data to update in the database (deleting is done by updating to null)
-                                        let updates = {};
-                                        updates["/POIs/" + snapshot.key] = null;
-
-                                        // update the point location in the database and callback to console
-                                        firebase.database().ref().update(updates, function(error) {
-                                            if (!error) {
-                                                console.log("successfully deleted point!");
-
-                                            // remove the marker from the map
-                                            e.target.remove();
-
-                                            } else {
-                                            console.error(error);
-                                            }
-                                        });
-                                        touchtime = 0;
-                                    } else {
-                                        // not a double click so set as a new first click
-                                        touchtime = new Date().getTime();
-                                    }
-                                }
-
-                        });
-
-                        // add a drag end listener to the array to update location
-                            marker.on('dragend', function(e) {
-
-                            // prepare the data to update in the database
-                            let updates = {};
-                            updates["/POIs/" + snapshot.key] = e.target.toGeoJSON();
-
-                            // update the point location in the database and callback to console
-                            firebase.database().ref().update(updates, function(error) {
-                                if (!error) {
-                                console.log("successfully updated firebase!");
-                                } else {
-                                console.error(error);
-                                }
-                            });
-                            });
-                        }
-                        
-            // });
-        
-        }; //finish function
-
-
-            //Rate the current point
-            function rate(snapkey) {  
-                //console.log(sessionStorage.starRating)
-                sessionStorage.starRating = count
-                //console.log(lastClicked)
-
-                var star_rating = {
-                    rating: count,
-                }
-
-                var pois = firebase.database().ref('POIs');
-                var ratings = pois.child(snapkey).child('properties/ratings');
-    
-                // push the data into the database, set inline callback
-                ratings.push(star_rating, function(error) {
-
-                        //if no error is returned to the callback, then it was loaded successfully
-                        if (!error) {
-                            console.log("successfully added rating!");
-
-                        // otherwise pass the error to the console
-                        } else {
-                            console.error(error);
-                        }
-                });
-                             
-                var ratings_list = []
-                ratings.on('child_added', (snapshot) => {
-                    
-                    var info = snapshot.val();
-                    var rating = info["rating"]
-                    
-                    ratings_list.push(rating)
-
-                });
-
-                // Getting sum of numbers
-                var sum = ratings_list.reduce(function(a, b){
-                    return Number(a) + Number(b);
-                }, 0);
-
-                // calculate the average 
-                var average = Number(sum)/(ratings_list.length)
-                //document.getElementById("pname").innerHTML = lastClicked.properties.name;
-                last_clicked.properties.rating = average;
-                // give the rating one decimal place
-                document.getElementById('average_rating').innerHTML = "Rating: " + last_clicked.properties.rating.toFixed(1)
-                let updates = {};
-                    updates["/POIs/" + snapkey +"/properties/rating/"] = average;
-
-                    // update the point location in the database and callback to console
-                    firebase.database().ref().update(updates, function(error) {
-                        if (!error) {
-                        console.log("successfully added a rating");
-                        } else {
-                        console.error(error);
-                        }
-                    });
-            
-
-
-                    };
-
-
-
-        // a function to create the marker
-        function customMarker (snapshot, point){
-
-            // //identify the creator 
-            var creator = point.properties.creator;
-            // //query the users database to find 
-            //     users = firebase.database().ref('users');
-
-            //     //query the data base to get the info of the creator
-            //     users.orderByKey().equalTo(creator).on('child_added', (snapshot) => {
-            //         info = snapshot.val();    
-            //         var username = info["username"];
-            //         sessionStorage.setItem('username', username)
-                
-            //     });
-
-                // variable for the pop up 
-                const point_info = '<div id="popup-form" style="overflow-y:scroll;">\
-                                    <div id="view_mode">\
-                                        <h4 id="name_1" style="text-align:center"></h4>\
-                                        <p id="describe" style="text-align:center"></p>\
-                                        <p id="class" style="text-align:center"></p>\
-                                        <div class="stars" onclick="rate(\''+snapshot.key+'\')" style="position:relative;left:15px">\
-                                                <span onmouseover="starmark(this)" onclick="starmark(this)" id="1one" style="font-size:15px;cursor:pointer;"  class="fa fa-star checked"></span>\
-                                                <span onmouseover="starmark(this)" onclick="starmark(this)" id="2one"  style="font-size:15px;cursor:pointer;" class="fa fa-star "></span>\
-                                                <span onmouseover="starmark(this)" onclick="starmark(this)" id="3one"  style="font-size:15px;cursor:pointer;" class="fa fa-star "></span>\
-                                                <span onmouseover="starmark(this)" onclick="starmark(this)" id="4one"  style="font-size:15px;cursor:pointer;" class="fa fa-star"></span>\
-                                                <span onmouseover="starmark(this)" onclick="starmark(this)" id="5one"  style="font-size:15px;cursor:pointer;" class="fa fa-star"></span>\
-                                        </div>\
-                                        <p id="average_rating" style="position:relative;left:20px;font-size:10px"></p>\
-                                        <div class="row">\
-                                            <button id="refresh_button" onclick="toggleVisibility(view_mode, comments),loadComments(\''+snapshot.key+'\')" style="border:0;position:relative;left:10px">Comments</button>\
-                                            <button id="refresh_button" onclick="toggleVisibility(view_mode,edit_mode)" style="position:relative;left:10px">Edit</button>\
-                                        </div>\
-                                     </div>\
-                                    <div id="edit_mode" class="edit_form" style="position:relative;height:100%;">\
-                                        <label for="name">Name: </label>\
-                                        <input id="name" value=\''+snapshot.val().properties.name+'\' class=name" type="text" style="position:relative; max-width:100%;border:10px;border-radius:20px;"/>\
-                                        <label for="description">Description: </label>\
-                                        <input id="description" value=\''+snapshot.val().properties.description+'\' class="description" type="text" style="position:relative;border:10px; max-width:100%;border-radius:20px;""/>\
-                                        <label for="tags">Category: </label>\
-                                        <select name="tags" id="tags" style="position:relative; border-radius:20px;border:0;appearance: none;" >\
-                                            <option value="n/a"></option>\
-                                            <option value="Art">Art</option>\
-                                            <option value="Bars">Bars</option>\
-                                            <option value="GreenSpace">Green Space</option>\
-                                            <option value="Cafes">Cafes</option>\
-                                            <option value="Hostels">Hostels</option>\
-                                            <option value="Historical">Historical</option>\
-                                            <option value="Transport">Transport</option>\
-                                            <option value="Shops">Shops</option>\
-                                        </select>\
-                                        <div class="row">\
-                                            <button class="col-xs-6" id="popup-button" type="button" onclick="categorise(\''+snapshot.key+'\'),toggleVisibility(view_mode,edit_mode)"><img src="tick.png" style="width:20px;"></button>\
-                                            <button class="col-xs-6" id="popup-button" type="button" onclick="deleteInfo(\''+snapshot.key+'\')"><img src="remove.png" style="width:20px;" ></button>\
-                                        </div>\
-                                        <button onclick="toggleVisibility(view_mode,edit_mode)" id="refresh_button">Back</button>\
-                                    </div>\
-                                    <div id="comments" class="edit_form" style="position:relative;height:100%;display:none" >\
-                                    <div class="dropdown">\
-                                        <img src="profile1.png" style="width:20px">\
-                                        <div class="dropdown-content"style="z-index:500">\
-                                            <p>Added by: \''+snapshot.val().properties.username+'\'</p>\
-                                        </div>\
-                                    </div>\
-                                    <label for="comment_input">Leave a comment:</label>\
-                                        <input id="comment_input" class="col-xs-6" style="position:relative;width:70%;"></input>\
-                                        <button onclick="addComment(\''+snapshot.key+'\')"id="refresh_button" style="border:0;position:relative;width:10%"class="col-xs-6">></button>\
-                                        <div id="comment_box"></div>\
-                                        <button onclick="toggleVisibility(view_mode,comments), removeComments()" id="refresh_button">Back</button>\
-                                    </div>\
-                                    </div>';
-                               
-                     //define the marker
-                    const my_icon = L.icon({
-                        iconUrl: 'marker2.png',
-                        iconSize: [35,35], // size of the icon
-                        });
-
-                        // make an array to return both the icon and the customised marker
-                        return {
-                            my_icon,
-                            point_info,
-                        };
-
-            }
-
-            //setCategory(\''+snapshot.val().properties.class+'\')
-            // // function to set the category on the marker
-            // function setCategory(category){
-            //     console.log(category)
-            //     document.getElementById('tags').value = category;
-            // };
-
-
-            /**
-                * This marks colours in the stars when they are hovered over
-                */ 
-            function starmark(item){
-                count=item.id[0];
-                sessionStorage.starRating = count;
-                var subid= item.id.substring(1);
-                // loop through the stars
-                for(var i=0;i<5;i++){
-                    // if the index is smaller than the number chosen, it needs to show as green - eg selected
-                    if(i<count){
-                        document.getElementById((i+1)+subid).style.color="#D1E5BE";
-                    // if it is bigger, it hasnt been selected so it stays black 
-                    }else{
-                        document.getElementById((i+1)+subid).style.color="black";
-                        }  
-                    }
-
-            };
-            /**
-                * This does the actual toggling takes two arguments 
-                */
-                function toggleVisibility(a, b) {
-
-                    // b is visible a is invisible
-                    if(a.style.display === 'block') { //login
-                        document.getElementById(b.id).style.display = 'block'; //editmode (b) comments
-                        document.getElementById(a.id).style.display = 'none'; //login //viewmode (a)
-
-                    }
-
-                    // a is visible b is invisible
-                    else {
-                        document.getElementById(b.id).style.display = 'none';//register //editmode (b)comments
-                        document.getElementById(a.id).style.display = 'block';//login //viewmode (a)
-
-                    }        
-
-                };                         
-
-                /**
-                * This loads the comments in the customised marker
-                */
-
-                function loadComments(snapkey){
-                    //make a reference to the database
-                    const pois = firebase.database().ref('POIs');
-                    const comments_db = pois.child(snapkey).child('properties/comments');
-                    
-                    //make an empty list of comments
-                    var comments_list = []
-                    // get the comments out of the database 
-                    comments_db.on('child_added', (snapshot) => {
-                        
-                        var info = snapshot.val();
-                        
-                        // make a dictonary holding the username and comment
-                        var comment_info = {
-                                username: info['user'],
-                                comment: info['comment']
-                        }
-                        // add the comment info to the list 
-                        comments_list.push(comment_info);
-                    });
-                         
-                    //loop through the list of comments
-                    var i;
-                    for (i = 0; i < comments_list.length; i++) {
-                        const username = comments_list[i]['username']
-                        const comment = comments_list[i]['comment']
-                        const comment_box = document.getElementById('comment_box')
-                        
-                        // if the comment box already contains the comment, dont print it??
-                        var para = document.createElement("P");               // Create a <p> element
-                        para.innerText = comment + " -" + username;            // Insert text
-                        document.getElementById("comment_box").appendChild(para);
-                        console.log('added comment!')   
-                        }
-                    }
-
-
-
-
-                    //this refreshes the comments when you go off the page
-                    function removeComments(){
-                        document.getElementById("comment_box").innerHTML = "";
-                        console.log('deleted comments!')
-                    }
-
-                //add a comment, add it in the database
-                function addComment(snapkey){
-                    const pois = firebase.database().ref('POIs');
-                    const users = firebase.database().ref('users');
-                    const comments_db = pois.child(snapkey).child('properties/comments');
-                    const comment = document.getElementById('comment_input').value;
-
-                
-                   //get the username of the current user
-                    users.orderByKey().equalTo(user_id).on('child_added', (snapshot) => {
-                            info = snapshot.val();    
-                            const username = info["username"];
-                            const comment_data = {
-                                    comment: comment,
-                                    user: username,       
-                            }
-                        // push the data into the database, set inline callback
-                        comments_db.push(comment_data, function(error) {
-
-                                //if no error is returned to the callback, then it was loaded successfully
-                                if (!error) {
-                                    console.log("successfully added comment!");
-
-                                // otherwise pass the error to the console
-                                } else {
-                                    console.error(error);
-                                }
-                            });
-
-                            var comments_list = []
-                            comments_db.on('child_added', (snapshot) => {
-                                var info = snapshot.val();
-                                var key = snapshot.key;
-                                //console.log(info["comments"])
-                                var comment_info = {
-                                    username: info['user'],
-                                    comment: info['comment']
-                                }
-                                comments_list.push(comment_info);
-                            
-                            });
-
-                            // console.log(comments_list[comments_list.length-1])
-                            var last_comment = comments_list[comments_list.length-1]['comment']
-                            var last_username = comments_list[comments_list.length-1]['username']
-                            //add all the friends to a div to show each one and their points
-                            var para = document.createElement("P");               // Create a <p> element
-                                para.innerText = last_comment + " -" + last_username;            // Insert text
-                                document.getElementById("comment_box").appendChild(para);
-                        });
-                };
-
-        </script>
-    </body>
 </html>

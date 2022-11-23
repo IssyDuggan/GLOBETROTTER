@@ -1,57 +1,59 @@
 <!DOCTYPE html>
 <html>
-<head>
- <!-- Required meta tags -->
- <meta charset="utf-8">
- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
- <!-- Create the title-->
- <title>GlobeTrotter</title>
- 
- <!-- Load firebase-->
- <!-- The core Firebase JS SDK is always required and must be listed first -->
- <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-app.js"></script>
- <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-database.js"></script>
- <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-auth.js"></script>
-            
-<!-- Link to CSS -->
-<link rel="stylesheet" href="intro.css">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Create the title-->
+    <title>GlobeTrotter</title>
+
+    <!-- Load firebase-->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-auth.js"></script>
+
+    <!-- Link to CSS -->
+    <link rel="stylesheet" href="../CSS/intro.css">
 
 </head>
 
 <body onload="initDb()">
-        <!-- create a div for the map and menu -->
-        <div class="row" > 
-                
-            <div class="col-xs-6" id="vertical-menu">
-                <a href="profile.html" ><img src="profile1.png" style="width:30px"></a> 
-                <a href="basemap.html"><img src="marker.png" style="width:30px;"></a>
-                <a href="findfriends.html" class="active"><img src="bag.png" style="width:30px;"></a>
-            </div>
+    <!-- create a div for the map and menu -->
+    <div class="row" id="map_container" style="position:absolute; margin:-2vw">
 
-             <!-- A division to hold the profile form -->
-             <div class="col-xs-6" id="form" style="width:70%">
-                    <img src="bag.png" style="width:60px;">
-                    <h1>Your Rucksack</h1>
-                    <p id="points"></p>
-                    <p>Add friends in your rucksack </p>
-                    <div id="createProfile">
-                    <label for="yourCode">Your code: </label>
-                    <input type="text" name="yourCode" id="yourCode">
-                    <label for="addFriends">Add friends: </label>
-                    <input type="text" name="addFriends" id="addFriends">
-                    <button id=addFriendsbtn onclick="addfriends()">Add</button>
-                    <p>Your friends:</p>
-                    <!-- <p id="yourFriends"></p> -->
-                    <div id="yourFriends"></div>
-                </div>
+        <div class="col-xs-6" id="vertical-menu"style="top:10vw;left:-3vw">
+            <a href="profile.html"><img src="../CSS/Media/profile1.png" style="position:absolute;top:3vw;width:30px"></a>
+            <a href="basemap.html"><img src="../CSS/Media/marker.png" style="position:absolute;top:11.5vw;width:30px;"></a>
+            <a href="findfriends.html" class="active"><img src="../CSS/Media/bag.png"
+                    style="position:absolute;top:20vw;width:30px;"></a>
+        </div>
+
+        <!-- A division to hold the profile form -->
+        <div class="col-lg-6" id="form" style="position:relative;width:80%; top:20vw">
+            <img src="../CSS/Media/bag.png" style="width:15vw;">
+            <h1>Your Rucksack</h1>
+            <p id="points"></p>
+            <p>Add friends in your rucksack </p>
+            <div id="createProfile">
+                <label for="yourCode">Your code: </label>
+                <input type="text" name="yourCode" id="yourCode">
+                <label for="addFriends">Add friends: </label>
+                <input type="text" name="addFriends" id="addFriends">
+                <button id=addFriendsbtn onclick="addfriends()">Add</button>
+                <p>Your friends:</p>
+                <!-- <p id="yourFriends"></p> -->
+                <div id="yourFriends"></div>
+            </div>
         </div>
 
 
-<script>	
+        <script>
 
-        // a function to add friends to your network
-        function addfriends(){
+            // a function to add friends to your network
+            function addfriends() {
 
                 //get the code added in the addfriends box
                 var friend = document.getElementById("addFriends").value;
@@ -84,26 +86,26 @@
                     const friends = users.child(userId).child('friends');
 
                     // push the data into the database, set inline callback
-                    friends.push(friendinfo, function(error) {
+                    friends.push(friendinfo, function (error) {
 
-                            //if no error is returned to the callback, then it was loaded successfully
-                            if (!error) {
-                                console.log("successfully added friend!");
+                        //if no error is returned to the callback, then it was loaded successfully
+                        if (!error) {
+                            console.log("successfully added friend!");
 
                             // otherwise pass the error to the console
-                            } else {
-                                console.error(error);
-                                window.alert('Could not add friend, try again!')
-                            }
+                        } else {
+                            console.error(error);
+                            window.alert('Could not add friend, try again!')
+                        }
                     });
-            
+
                 });
-        };
+            };
 
-        //function to iniitalise the databse
-        function initDb(){
+            //function to iniitalise the databse
+            function initDb() {
 
-        
+
                 // Load Firebase configuration or Assessment 2 app
                 const firebaseConfig = {
                     apiKey: "AIzaSyBuduFOLQ40g1UNdo_1JHPnrT36pN8q6zc",
@@ -123,28 +125,28 @@
                 document.getElementById('yourCode').value = userId;
 
                 var pois = firebase.database().ref('POIs');
-                
+
                 // var creator = pois.orderByChild('properties/creator').equalTo(userId);
-                                        // Find all points equal to the selection 
-                                        //var ratings = pois.child('properties/creator').child(userId)
-                                        
-                                // this doesnt qork!!!!
-                                        // var ratings_list = [];
-                                        // creator.on("child_added", (snapshot) => {
+                // Find all points equal to the selection 
+                //var ratings = pois.child('properties/creator').child(userId)
 
-                                        //                 var data = snapshot.val();
+                // this doesnt qork!!!!
+                // var ratings_list = [];
+                // creator.on("child_added", (snapshot) => {
 
-                                        //                 var rating = String(data["properties"]["rating"]);
-                                        //                 //console.log(rating)
-                                        //                //if there is a rating add it to the list 
-                                        //                 if (rating !== "0"){
-                                        //                     ratings_list.push(rating)
-                                        //                 };
-                                        // });
+                //                 var data = snapshot.val();
 
-                                        // console.log(ratings_list);
-                                        // var lengthr = ratings_list.length;
-                                        // console.log(lengthr)
+                //                 var rating = String(data["properties"]["rating"]);
+                //                 //console.log(rating)
+                //                //if there is a rating add it to the list 
+                //                 if (rating !== "0"){
+                //                     ratings_list.push(rating)
+                //                 };
+                // });
+
+                // console.log(ratings_list);
+                // var lengthr = ratings_list.length;
+                // console.log(lengthr)
 
                 // make a reference to the 'users' database 
                 const users = firebase.database().ref('users');
@@ -167,17 +169,18 @@
                     var username = friendsinfo['username']
                     var points = friendsinfo['points']
                     //console.log(username,points)
-                    
+
                     //add all the friends to a div to show each one and their points
                     var para = document.createElement("P");               // Create a <p> element
-                        para.innerText = username + ": " + points + "pts.";               // Insert text
-                        document.getElementById("yourFriends").appendChild(para);
+                    para.innerText = username + ": " + points + "pts.";               // Insert text
+                    document.getElementById("yourFriends").appendChild(para);
 
-            
+
                 });
-                
+
             };
-    
-</script>
+
+        </script>
 </body>
+
 </html>
