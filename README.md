@@ -16,6 +16,7 @@ The idea of the app is to change the way people explore a city, to crowdsource g
  - It uses an Tiny Encryption Algorithm (TEA) to protect sensitive information (location).https://www.movable-type.co.uk/scripts/tea.html 
  
  ### Issues
- [x] Fix styling issues for better UX
+ - [x] Tidy up repo
+ - [ ] Fix styling issues for better UX
 
  
