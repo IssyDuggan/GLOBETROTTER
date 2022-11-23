@@ -1,4 +1,4 @@
-# GlobeTrotter
+# globetrotter
 
 **This is a prototype for the urban exploration app which has since been renamed ando.**
 
