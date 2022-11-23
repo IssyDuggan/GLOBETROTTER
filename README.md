@@ -1,4 +1,4 @@
-# globetrotter
+# GLOBETROTTER - THE URBAN EXPLORATION GAME 
 
 **This is a prototype for the urban exploration app which has since been renamed ando.**
 
