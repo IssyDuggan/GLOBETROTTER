@@ -37,7 +37,7 @@
 
     
     <!-- Link to CSS -->
-    <link rel="stylesheet" href="..CSS/intro.css">
+    <link rel="stylesheet" href="./CSS/intro.css">
 
     <!-- load the star rating stuff -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -62,9 +62,9 @@
 
             <!-- A division to hold the menu -->
             <div id="vertical-menu" style="left:1vw;top:10vw;position:absolute;z-index:500">
-                <a href="profile.html"><img src="../CSS/Media/profile1.png" style="position:absolute;top:3vw;width:30px;"></a>
-                <a href="basemap.html" class="active"><img src="../CSS/Media/marker.png" style="position:absolute;top:11.5vw;width:30px;"></a>
-                <a href="findfriends.html"><img src="../CSS/Media/bag.png" style="position:absolute;top:20vw;width:30px;"></a>
+                <a href="profile.html"><img src="./CSS/Media/profile1.png" style="position:absolute;top:3vw;width:30px;"></a>
+                <a href="basemap.html" class="active"><img src="./CSS/Media/marker.png" style="position:absolute;top:11.5vw;width:30px;"></a>
+                <a href="findfriends.html"><img src="./CSS/Media/bag.png" style="position:absolute;top:20vw;width:30px;"></a>
             </div>
         </div>
     </div>
@@ -426,14 +426,14 @@
                                             <option value="Shops">Shops</option>\
                                         </select>\
                                         <div class="row">\
-                                            <button class="col-xs-6" id="popup-button" type="button" onclick="categorise(\''+ snapshot.key + '\'),toggleVisibility(view_mode,edit_mode)"><img src="../CSS/Media/tick.png" style="width:20px;"></button>\
-                                            <button class="col-xs-6" id="popup-button" type="button" onclick="deleteInfo(\''+ snapshot.key + '\')"><img src="../CSS/Media/remove.png" style="width:20px;" ></button>\
+                                            <button class="col-xs-6" id="popup-button" type="button" onclick="categorise(\''+ snapshot.key + '\'),toggleVisibility(view_mode,edit_mode)"><img src="./CSS/Media/tick.png" style="width:20px;"></button>\
+                                            <button class="col-xs-6" id="popup-button" type="button" onclick="deleteInfo(\''+ snapshot.key + '\')"><img src="./CSS/Media/remove.png" style="width:20px;" ></button>\
                                         </div>\
                                         <button onclick="toggleVisibility(view_mode,edit_mode)" id="refresh_button">Back</button>\
                                     </div>\
                                     <div id="comments" class="edit_form" style="position:relative;height:100%;display:none" >\
                                     <div class="dropdown">\
-                                        <img src="../CSS/Media/profile1.png" style="width:20px">\
+                                        <img src="./CSS/Media/profile1.png" style="width:20px">\
                                         <div class="dropdown-content"style="z-index:500">\
                                             <p>Added by: \''+ snapshot.val().properties.username + '\'</p>\
                                         </div>\
@@ -448,7 +448,7 @@
 
             //define the marker
             const my_icon = L.icon({
-                iconUrl: '../CSS/Media/marker2.png',
+                iconUrl: './CSS/Media/marker2.png',
                 iconSize: [35, 35], // size of the icon
             });
 
