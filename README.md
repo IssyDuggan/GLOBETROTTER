@@ -15,6 +15,7 @@ The idea of the app is to change the way people explore a city, to crowdsource g
  - It uses Google's Firebase to authenticate users, and the app only works if users have registered with an email and password. https://firebase.google.com/docs/auth
  - It uses an Tiny Encryption Algorithm (TEA) to protect sensitive information (location).https://www.movable-type.co.uk/scripts/tea.html 
  
- 
+ ### Issues
+ [x] Fix styling issues for better UX
 
  
