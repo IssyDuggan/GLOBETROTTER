@@ -1,4 +1,6 @@
 # GLOBETROTTER - THE URBAN EXPLORATION GAME 
+To access:
+https://issyduggan.github.io/globetrotter-app/ 
 
 **This is a prototype for the urban exploration app which has since been renamed ando.**
 
